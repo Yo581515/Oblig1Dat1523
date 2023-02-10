@@ -1,30 +1,24 @@
 package com.example.oblig1dat153.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
-import androidx.annotation.NonNull;
+public class Animal {
+    private ImageItem image;
+    private String name;
+    private String wrongName1;
+    private String wrongName2;
 
-import java.io.Serializable;
-
-public class Animal implements Serializable {
-    int image;
-    String name;
-    String wrongName1;
-    String wrongName2;
-
-    public Animal(int image, String name, String wrongName1, String wrongName2) {
+    public Animal(ImageItem image, String name, String wrongName1, String wrongName2) {
         this.image = image;
         this.name = name;
         this.wrongName1 = wrongName1;
         this.wrongName2 = wrongName2;
     }
 
-    public int getImage() {
+    public ImageItem getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(ImageItem image) {
         this.image = image;
     }
 
@@ -52,32 +46,8 @@ public class Animal implements Serializable {
         this.wrongName2 = wrongName2;
     }
 
-/*    @Override
-    public int describeContents() {
-        return 0;
+    public boolean isCorrectName(String name) {
+        return this.name.equals(name);
     }
 
-    @Override
-    public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeInt(image);
-        dest.writeString(name);
-        dest.writeString(wrongName1);
-        dest.writeString(wrongName2);
-    }
-
-    public Animal(Parcel in) {
-        image = in.readInt();
-        name = in.readString();
-        wrongName1 = in.readString();
-        wrongName2 = in.readString();
-    }
-
-    public static final Parcelable.Creator<Animal> CREATOR = new Parcelable.Creator<Animal>() {
-        public Animal createFromParcel(Parcel in) {
-            return new Animal(in);
-        }
-        public Animal[] newArray(int size) {
-            return new Animal[size];
-        }
-    };*/
 }

@@ -1,5 +1,6 @@
 package com.example.oblig1dat153.adapters;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final Animal animal = animals.get(position);
         holder.name_textView.setText(animal.getName());
-        holder.imageView.setImageResource(animal.getImage());
+
+        Integer intImage = animal.getImage().getIntImage();
+        Uri uriImage = animal.getImage().getUriImage();
+
+        if (intImage != null) {
+            holder.imageView.setImageResource(intImage);
+        } else if (uriImage == null) {
+            holder.imageView.setImageURI(uriImage);
+        }
+
 
         // not needed but i remoces an unexplained error
         int index = position;

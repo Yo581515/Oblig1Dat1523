@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.oblig1dat153.model.Animal;
 import com.example.oblig1dat153.model.AnimalList;
+import com.example.oblig1dat153.model.ImageItem;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -48,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
         mode_switcher = findViewById(R.id.mode_switcher);
 
 
-        AnimalList.getInstance().addAnimal(new Animal(R.drawable.clifford, "Clifford", "peter", "parket"));
-        AnimalList.getInstance().addAnimal(new Animal(R.drawable.pluto, "Pluto", "oorjan", "yosafe"));
-        AnimalList.getInstance().addAnimal(new Animal(R.drawable.scooby_doo_pido, "Scoopy Doo Pido", "vlad", "maksim"));
-        AnimalList.getInstance().addAnimal(new Animal(R.drawable.brian_griffin, "Brian Griffin", "haakon", "espen"));
+        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.clifford,null), "Clifford", "peter", "parket"));
+        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.pluto,null), "Pluto", "oorjan", "yosafe"));
+        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.scooby_doo_pido,null), "Scoopy Doo Pido", "vlad", "maksim"));
+        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.brian_griffin,null), "Brian Griffin", "haakon", "espen"));
 
 
 
@@ -130,14 +131,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         animals = AnimalList.getInstance().getAnimals();
-
-
         Toast.makeText(this, ""+ animals.size(), Toast.LENGTH_SHORT).show();
-
-
-
     }
 
 

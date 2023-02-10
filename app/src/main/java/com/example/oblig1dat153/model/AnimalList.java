@@ -7,7 +7,7 @@ import java.util.List;
 
 public class AnimalList {
 
-    List<Animal> animals = new ArrayList<>();
+    private List<Animal> animals = new ArrayList<>();
 
     public List<Animal> getAnimals() {
         return animals;
