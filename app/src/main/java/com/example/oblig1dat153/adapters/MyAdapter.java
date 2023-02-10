@@ -42,14 +42,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         final Animal animal = animals.get(position);
         holder.name_textView.setText(animal.getName());
 
-        Integer intImage = animal.getImage().getIntImage();
-        Uri uriImage = animal.getImage().getUriImage();
+   /*     Integer intImage = animal.getImage().getIntImage();
+        Uri uriImage = animal.getImage().getUriImage();*/
 
-        if (intImage != null) {
-            holder.imageView.setImageResource(intImage);
-        } else if (uriImage == null) {
-            holder.imageView.setImageURI(uriImage);
+
+        if (animal.getImage().getUriImage() !=null) {
+            holder.imageView.setImageURI(animal.getImage().getUriImage());
+        } else if (animal.getImage().getIntImage() != 0) {
+            holder.imageView.setImageResource(animal.getImage().getIntImage());
         }
+
+
+
 
 
         // not needed but i remoces an unexplained error

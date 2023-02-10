@@ -6,7 +6,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     Button play_quiz_btn, entity_list_btn;
-//    AnimalList animalListClass;
+    //    AnimalList animalListClass;
     Switch mode_switcher;
 
 
@@ -48,12 +50,20 @@ public class MainActivity extends AppCompatActivity {
         entity_list_btn = findViewById(R.id.entity_list_btn);
         mode_switcher = findViewById(R.id.mode_switcher);
 
-
-        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.clifford,null), "Clifford", "peter", "parket"));
-        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.pluto,null), "Pluto", "oorjan", "yosafe"));
-        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.scooby_doo_pido,null), "Scoopy Doo Pido", "vlad", "maksim"));
-        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.brian_griffin,null), "Brian Griffin", "haakon", "espen"));
-
+//ImageItem{intImage=null, uriImage=content://com.google.android.apps.photos.contentprovider/-1/1/content%3A%2F%2Fmedia%2Fexternal%2Fimages%2Fmedia%2F1000000040/ORIGINAL/NONE/image%2Fpng/470027333}
+        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.clifford), "Clifford", "peter", "parket"));
+        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.pluto), "Pluto", "oorjan", "yosafe"));
+        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.scooby_doo_pido), "Scoopy Doo Pido", "vlad", "maksim"));
+        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.brian_griffin), "Brian Griffin", "haakon", "espen"));
+    /*    AnimalList.getInstance().addAnimal(
+                new Animal(
+                        new ImageItem(
+                                Uri.parse("content://com.google.android.apps.photos.contentprovider/-1/1/content%3A%2F%2Fmedia%2Fexternal%2Fimages%2Fmedia%2F1000000040/ORIGINAL/NONE/image.png")
+                        ),
+                        "Brian Griffin",
+                        "haakon",
+                        "espen")
+        );*/
 
 
         play_quiz_btn.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 getSharedPreferences("MySharedPref", MODE_PRIVATE);
         String s1 = sharedPreferences.getString("mode_switcher", " ");
         System.out.print(s1);
-        boolean isTextEmpty = s1!=null && !s1.trim().equals("");
+        boolean isTextEmpty = s1 != null && !s1.trim().equals("");
         if (isTextEmpty) {
             if (s1.equals(MainActivity.HARD_MODE)) {
                 mode_switcher.setTextColor(HARD_MODE_COLOR);
@@ -132,7 +142,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         animals = AnimalList.getInstance().getAnimals();
-        Toast.makeText(this, ""+ animals.size(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "" + animals.size(), Toast.LENGTH_SHORT).show();
+
+        /*animals.forEach(a->{
+            Log.d("v",a.getImage().toString());
+        });*/
     }
 
 

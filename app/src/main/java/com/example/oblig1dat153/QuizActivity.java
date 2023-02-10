@@ -25,6 +25,8 @@ public class QuizActivity extends AppCompatActivity {
         Animal animal = AnimalList.getInstance().getAnimals().get(random);
 
 
+
+
     }
 
 }
