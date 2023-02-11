@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.oblig1dat153.R;
 import com.example.oblig1dat153.model.Animal;
 import com.example.oblig1dat153.model.AnimalList;
@@ -47,7 +48,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
 
         if (animal.getImage().getUriImage() !=null) {
-            holder.imageView.setImageURI(animal.getImage().getUriImage());
+            holder.bindImage(animal.getImage().getUriImage());
         } else if (animal.getImage().getIntImage() != 0) {
             holder.imageView.setImageResource(animal.getImage().getIntImage());
         }
@@ -84,6 +85,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             this.imageView = itemView.findViewById(R.id.imageView);
             this.name_textView = itemView.findViewById(R.id.textview);
             this.delete_textView = itemView.findViewById(R.id.delete);
+        }
+
+        void bindImage(Uri imageUri) {
+            Glide.with(itemView.getContext())
+                    .load(imageUri)
+                    .into(imageView);
         }
     }
 }

@@ -5,15 +5,20 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -26,12 +31,14 @@ import com.example.oblig1dat153.model.Animal;
 import com.example.oblig1dat153.model.AnimalList;
 import com.example.oblig1dat153.model.ImageItem;
 
+import java.io.File;
+
 public class ExampleDialog extends AppCompatDialogFragment {
     Uri imageUri;
     ImageView image;
-    EditText name_txt;
     MyAdapter adapter;
 
+    // constructor
     public ExampleDialog(MyAdapter adapter) {
         this.adapter = adapter;
     }
@@ -40,25 +47,7 @@ public class ExampleDialog extends AppCompatDialogFragment {
         return imageUri;
     }
 
-    public void setImageUri(Uri imageUri) {
-        this.imageUri = imageUri;
-    }
 
-    public ImageView getImage() {
-        return image;
-    }
-
-    public void setImage(ImageView image) {
-        this.image = image;
-    }
-
-    public EditText getName_txt() {
-        return name_txt;
-    }
-
-    public void setName_txt(EditText name_txt) {
-        this.name_txt = name_txt;
-    }
 
     private final ActivityResultLauncher<Intent> launcher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -67,27 +56,6 @@ public class ExampleDialog extends AppCompatDialogFragment {
                         && result.getData() != null) {
                     imageUri = result.getData().getData();
                     image.setImageURI(imageUri);
-                    Log.d("uri",imageUri.getEncodedPath());
-                    Log.d("uri",imageUri.getEncodedPath());
-
-                    Log.d("uri",imageUri.getEncodedPath());
-                    Log.d("uri",imageUri.getEncodedPath());
-                    Log.d("uri",imageUri.getEncodedPath());
-                    Log.d("uri",imageUri.getEncodedPath());
-                    Log.d("uri",imageUri.getEncodedPath());
-                    Log.d("uri",imageUri.getEncodedPath());
-                    Log.d("uri",imageUri.getEncodedPath());
-                    Log.d("uri",imageUri.getEncodedPath());
-
-
-
-
-
-
-
-
-
-
                 }
             }
     );
@@ -102,26 +70,44 @@ public class ExampleDialog extends AppCompatDialogFragment {
         builder.setView(view);
 
         image = view.findViewById(R.id.image);
-        name_txt = view.findViewById(R.id.name);
+        TextView name_txt = view.findViewById(R.id.name);
+        TextView wrong_name_1_txt = view.findViewById(R.id.wrong_name_1);
+        TextView wrong_name_2_txt = view.findViewById(R.id.wrong_name_2);
 
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                Intent intent = new Intent(
+                        Intent.ACTION_PICK,
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                );
                 launcher.launch(intent);
             }
         });
 
 
-        builder.setTitle("Add Animals")
-                .setMessage("This is a Dialog")
+        builder
                 .setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Animal animal = new Animal(new ImageItem(getImageUri()), getName_txt().getText().toString(), "", "");
+
+                        if (TextUtils.isEmpty(name_txt.getText().toString())){
+                            Toast.makeText(getActivity().getApplication(), "Please Enter a Name", Toast.LENGTH_SHORT).show();
+                            return;
+                        }else{
+                            getDialog().dismiss();
+                        }
+
+                        Animal animal = new Animal(
+                                new ImageItem(getImageUri()),
+                                name_txt.getText().toString(),
+                                wrong_name_1_txt.getText().toString(),
+                                wrong_name_2_txt.getText().toString()
+                        );
+
                         AnimalList.getInstance().addAnimal(animal);
-//                        dialogInterface.cancel();
                         adapter.notifyDataSetChanged();
+
                     }
                 }).setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
@@ -129,7 +115,9 @@ public class ExampleDialog extends AppCompatDialogFragment {
                         dialog.cancel();
                     }
                 });
+
         final AlertDialog alertDialog = builder.create();
+
         return alertDialog;
     }
 }

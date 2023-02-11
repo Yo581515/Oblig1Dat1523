@@ -52,4 +52,13 @@ public class Animal  {
         return this.name.equals(name);
     }
 
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "image=" + image +
+                ", name='" + name + '\'' +
+                ", wrongName1='" + wrongName1 + '\'' +
+                ", wrongName2='" + wrongName2 + '\'' +
+                '}';
+    }
 }

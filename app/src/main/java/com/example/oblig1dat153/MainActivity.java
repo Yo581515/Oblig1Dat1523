@@ -144,9 +144,9 @@ public class MainActivity extends AppCompatActivity {
         animals = AnimalList.getInstance().getAnimals();
         Toast.makeText(this, "" + animals.size(), Toast.LENGTH_SHORT).show();
 
-        /*animals.forEach(a->{
-            Log.d("v",a.getImage().toString());
-        });*/
+        animals.forEach(a->{
+            Log.d(" Yosafe's ",a.toString());
+        });
     }
 
 
