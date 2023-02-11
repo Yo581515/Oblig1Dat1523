@@ -55,16 +55,6 @@ public class MainActivity extends AppCompatActivity {
         AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.pluto), "Pluto", "oorjan", "yosafe"));
         AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.scooby_doo_pido), "Scoopy Doo Pido", "vlad", "maksim"));
         AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.brian_griffin), "Brian Griffin", "haakon", "espen"));
-    /*    AnimalList.getInstance().addAnimal(
-                new Animal(
-                        new ImageItem(
-                                Uri.parse("content://com.google.android.apps.photos.contentprovider/-1/1/content%3A%2F%2Fmedia%2Fexternal%2Fimages%2Fmedia%2F1000000040/ORIGINAL/NONE/image.png")
-                        ),
-                        "Brian Griffin",
-                        "haakon",
-                        "espen")
-        );*/
-
 
         play_quiz_btn.setOnClickListener(new View.OnClickListener() {
             @Override

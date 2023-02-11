@@ -2,6 +2,8 @@
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_activity_bg_color"
@@ -94,28 +96,30 @@
             android:textSize="25dp" />
 
         <ImageView
-            android:id="@+id/image_view"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:id="@+id/q_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_margin="16dp"
-            android:layout_marginStart="16dp"
-            android:src="@drawable/quiz_logo" />
+            android:layout_marginStart="16dp" />
 
 
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="230dp"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="50dp"
+        >
 
         <RadioGroup
             android:id="@+id/radio_group"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="left">
 
             <RadioButton
                 android:id="@+id/radio_1"
@@ -147,17 +151,24 @@
 
     </LinearLayout>
 
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_margin="30dp"
+
+        >
 
         <Button
-            android:layout_width="match_parent"
+            android:id="@+id/submit_btn"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next" />
-    </LinearLayout>
+            android:text="SUBMIT"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.325" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.example.oblig1dat153.adapters;
 
+import android.content.Context;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +15,14 @@ import com.bumptech.glide.Glide;
 import com.example.oblig1dat153.R;
 import com.example.oblig1dat153.model.Animal;
 import com.example.oblig1dat153.model.AnimalList;
+import com.example.oblig1dat153.utils.QuizUtils;
 
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     List<Animal> animals;
+
 
 
     public MyAdapter(List<Animal> animals) {
@@ -40,21 +43,25 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
         final Animal animal = animals.get(position);
         holder.name_textView.setText(animal.getName());
 
-   /*     Integer intImage = animal.getImage().getIntImage();
+      /*  Integer intImage = animal.getImage().getIntImage();
         Uri uriImage = animal.getImage().getUriImage();*/
 
 
-        if (animal.getImage().getUriImage() !=null) {
-            holder.bindImage(animal.getImage().getUriImage());
-        } else if (animal.getImage().getIntImage() != 0) {
-            holder.imageView.setImageResource(animal.getImage().getIntImage());
-        }
+       /* if (uriImage !=null) {
+            holder.bindImage(uriImage);
+        } else if (intImage != 0) {
+            holder.imageView.setImageResource(intImage);
+        }*/
 
-
-
+        QuizUtils.insertToImageView(
+                animal.getImage(),
+                holder.imageView,
+                holder.getmTextViewContext()
+        );
 
 
         // not needed but i remoces an unexplained error
@@ -78,6 +85,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         ImageView imageView;
         TextView name_textView;
         TextView delete_textView;
+        View mTextView;
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -85,12 +93,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             this.imageView = itemView.findViewById(R.id.imageView);
             this.name_textView = itemView.findViewById(R.id.textview);
             this.delete_textView = itemView.findViewById(R.id.delete);
+            mTextView = itemView;
         }
 
         void bindImage(Uri imageUri) {
             Glide.with(itemView.getContext())
                     .load(imageUri)
                     .into(imageView);
+        }
+
+        public Context getmTextViewContext() {
+            return mTextView.getContext();
         }
     }
 }
