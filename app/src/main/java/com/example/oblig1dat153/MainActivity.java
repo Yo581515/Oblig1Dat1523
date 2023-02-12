@@ -50,10 +50,9 @@ public class MainActivity extends AppCompatActivity {
         entity_list_btn = findViewById(R.id.entity_list_btn);
         mode_switcher = findViewById(R.id.mode_switcher);
 
-//ImageItem{intImage=null, uriImage=content://com.google.android.apps.photos.contentprovider/-1/1/content%3A%2F%2Fmedia%2Fexternal%2Fimages%2Fmedia%2F1000000040/ORIGINAL/NONE/image%2Fpng/470027333}
-        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.clifford), "Clifford", "peter", "parket"));
-        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.pluto), "Pluto", "oorjan", "yosafe"));
-        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.scooby_doo_pido), "Scoopy Doo Pido", "vlad", "maksim"));
+        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.clifford), "Clifford", "Sander", "Yosafe"));
+        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.pluto), "Pluto", "OOrjan", "Hitler"));
+        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.scooby_doo_pido), "Scoopy Doo Pido", "John Cena", "Your MOM"));
         AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.brian_griffin), "Brian Griffin", "haakon", "espen"));
 
         play_quiz_btn.setOnClickListener(new View.OnClickListener() {
@@ -127,17 +126,4 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("mode_switcher", mode_switcher.getText().toString());
         editor.commit();
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        animals = AnimalList.getInstance().getAnimals();
-        Toast.makeText(this, "" + animals.size(), Toast.LENGTH_SHORT).show();
-
-        animals.forEach(a->{
-            Log.d(" Yosafe's ",a.toString());
-        });
-    }
-
-
 }
