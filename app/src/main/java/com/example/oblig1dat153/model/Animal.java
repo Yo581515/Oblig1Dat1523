@@ -1,8 +1,5 @@
 package com.example.oblig1dat153.model;
 
-
-
-
 public class Animal  {
     private ImageItem image;
     private String name;

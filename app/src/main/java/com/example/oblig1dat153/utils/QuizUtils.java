@@ -2,7 +2,6 @@ package com.example.oblig1dat153.utils;
 
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -20,7 +19,6 @@ public class QuizUtils {
                     .load(uriImage)
                     .centerCrop()
                     .into(imageView);
-
 
         } else if (intImage != null) {
             imageView.setImageResource(intImage);

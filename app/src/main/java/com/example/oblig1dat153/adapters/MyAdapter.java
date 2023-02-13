@@ -23,12 +23,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     List<Animal> animals;
 
-
-
     public MyAdapter(List<Animal> animals) {
         this.animals = animals;
     }
-
 
     // 3- Implementing the Methods
     @NonNull
@@ -47,16 +44,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         final Animal animal = animals.get(position);
         holder.name_textView.setText(animal.getName());
 
-      /*  Integer intImage = animal.getImage().getIntImage();
-        Uri uriImage = animal.getImage().getUriImage();*/
-
-
-       /* if (uriImage !=null) {
-            holder.bindImage(uriImage);
-        } else if (intImage != 0) {
-            holder.imageView.setImageResource(intImage);
-        }*/
-
         QuizUtils.insertToImageView(
                 animal.getImage(),
                 holder.imageView,
@@ -68,7 +55,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         int index = position;
         holder.delete_textView.setOnClickListener(new View.OnClickListener() {
             @Override
-
             public void onClick(View v) {
                 AnimalList.getInstance().deleteAnimal(index);
                 notifyDataSetChanged();

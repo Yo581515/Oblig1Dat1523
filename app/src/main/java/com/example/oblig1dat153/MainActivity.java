@@ -6,25 +6,19 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.example.oblig1dat153.model.Animal;
 import com.example.oblig1dat153.model.AnimalList;
 import com.example.oblig1dat153.model.ImageItem;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    List<Animal> animals;
 
     private static final String EASY_MODE = "EASY MODE";
     private static final String HARD_MODE = "HARD MODE";
