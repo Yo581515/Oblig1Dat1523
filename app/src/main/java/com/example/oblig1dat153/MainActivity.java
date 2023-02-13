@@ -51,9 +51,9 @@ public class MainActivity extends AppCompatActivity {
         mode_switcher = findViewById(R.id.mode_switcher);
 
         AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.clifford), "Clifford", "Sander", "Yosafe"));
-        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.pluto), "Pluto", "OOrjan", "Hitler"));
+        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.pluto), "Pluto", "OOrjan", "Haakon"));
         AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.scooby_doo_pido), "Scoopy Doo Pido", "John Cena", "Your MOM"));
-        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.brian_griffin), "Brian Griffin", "haakon", "espen"));
+        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.brian_griffin), "Brian Griffin", "Super man", "espen"));
 
         play_quiz_btn.setOnClickListener(new View.OnClickListener() {
             @Override
