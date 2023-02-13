@@ -55,7 +55,7 @@ public class QuizActivity extends AppCompatActivity {
                 Boolean isCorrectName = false;
                 int checked_radio_id = radioGroup.getCheckedRadioButtonId();
                 RadioButton radio_checked = findViewById(checked_radio_id);
-                if (radio_checked != null) {
+                if (radio_checked != null && radio_checked.isChecked()) {
                     isCorrectName = animals.get(currentAnimalIndex).isCorrectName(radio_checked.getText().toString());
                     radio_checked.setChecked(false);
                 }
