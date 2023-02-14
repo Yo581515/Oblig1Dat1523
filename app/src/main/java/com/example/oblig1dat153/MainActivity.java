@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
             mode_switcher.setTextColor(EASY_MODE_COLOR);
             mode_switcher.setText(MainActivity.EASY_MODE);
         }
-        // Saving the Text into SharedPref
+        // Saving the Text into SharedPreff
         SharedPreferences sharedPreferences =
                 getSharedPreferences("MySharedPref", MODE_PRIVATE);
         // Writing data to shared pref
