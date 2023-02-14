@@ -6,32 +6,25 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.oblig1dat153.R;
 import com.example.oblig1dat153.adapters.MyAdapter;
 import com.example.oblig1dat153.model.Animal;
 import com.example.oblig1dat153.model.AnimalList;
-import com.example.oblig1dat153.model.ImageItem;
-
-import java.io.File;
 
 public class ExampleDialog extends AppCompatDialogFragment {
     Uri imageUri;
@@ -43,9 +36,6 @@ public class ExampleDialog extends AppCompatDialogFragment {
         this.adapter = adapter;
     }
 
-    public Uri getImageUri() {
-        return imageUri;
-    }
 
 
 
@@ -98,8 +88,11 @@ public class ExampleDialog extends AppCompatDialogFragment {
                             getDialog().dismiss();
                         }
 
+                        Bitmap bitmapImage= ((BitmapDrawable) image.getDrawable()).getBitmap();
+
+
                         Animal animal = new Animal(
-                                new ImageItem(getImageUri()),
+                                bitmapImage,
                                 name_txt.getText().toString(),
                                 wrong_name_1_txt.getText().toString(),
                                 wrong_name_2_txt.getText().toString()

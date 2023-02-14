@@ -1,26 +1,26 @@
 package com.example.oblig1dat153.model;
 
 
-
+import android.graphics.Bitmap;
 
 public class Animal  {
-    private ImageItem image;
+    private Bitmap image;
     private String name;
     private String wrongName1;
     private String wrongName2;
 
-    public Animal(ImageItem image, String name, String wrongName1, String wrongName2) {
+    public Animal(Bitmap image, String name, String wrongName1, String wrongName2) {
         this.image = image;
         this.name = name;
         this.wrongName1 = wrongName1;
         this.wrongName2 = wrongName2;
     }
 
-    public ImageItem getImage() {
+    public Bitmap getImage() {
         return image;
     }
 
-    public void setImage(ImageItem image) {
+    public void setImage(Bitmap image) {
         this.image = image;
     }
 

@@ -5,21 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.example.oblig1dat153.model.Animal;
 import com.example.oblig1dat153.model.AnimalList;
-import com.example.oblig1dat153.model.ImageItem;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
         entity_list_btn = findViewById(R.id.entity_list_btn);
         mode_switcher = findViewById(R.id.mode_switcher);
 
-        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.clifford), "Clifford", "Sander", "Yosafe"));
-        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.pluto), "Pluto", "OOrjan", "Hitler"));
-        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.scooby_doo_pido), "Scoopy Doo Pido", "John Cena", "Your MOM"));
-        AnimalList.getInstance().addAnimal(new Animal(new ImageItem(R.drawable.brian_griffin), "Brian Griffin", "haakon", "espen"));
+        AnimalList.getInstance().addAnimal(new Animal(createBitmapFromDrawable(R.drawable.clifford), "Clifford", "Sander", "Yosafe"));
+        AnimalList.getInstance().addAnimal(new Animal(createBitmapFromDrawable(R.drawable.pluto), "Pluto", "OOrjan", "Hitler"));
+        AnimalList.getInstance().addAnimal(new Animal(createBitmapFromDrawable(R.drawable.scooby_doo_pido), "Scoopy Doo Pido", "John Cena", "Your MOM"));
+        AnimalList.getInstance().addAnimal(new Animal(createBitmapFromDrawable(R.drawable.brian_griffin), "Brian Griffin", "haakon", "espen"));
 
         play_quiz_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,5 +121,10 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("mode_switcher", mode_switcher.getText().toString());
         editor.commit();
+    }
+
+    private Bitmap createBitmapFromDrawable(int drawableId) {
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawableId);
+        return bitmap;
     }
 }

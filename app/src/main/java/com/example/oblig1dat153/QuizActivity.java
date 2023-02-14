@@ -89,11 +89,9 @@ public class QuizActivity extends AppCompatActivity {
         radio_2.setText(names.get(1));
         radio_3.setText(names.get(2));
         q_image = findViewById(R.id.q_image);
-
         QuizUtils.insertToImageView(
                 animal.getImage(),
-                q_image,
-                getApplicationContext()
+                q_image
         );
     }
 
