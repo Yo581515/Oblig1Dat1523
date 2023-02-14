@@ -1,7 +1,5 @@
 package com.example.oblig1dat153.model;
 
-import com.example.oblig1dat153.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +30,6 @@ public class AnimalList {
     private static final AnimalList holder = new AnimalList();
 
     public static AnimalList getInstance() {
-
         return holder;
     }
 
