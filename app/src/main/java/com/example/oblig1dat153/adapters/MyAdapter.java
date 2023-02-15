@@ -43,7 +43,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         QuizUtils.insertToImageView(
                 animal.getImage(),
-                holder.imageView
+                holder.imageView,
+                holder.itemView.getContext()
         );
 
         // not needed but i remoces an unexplained error
