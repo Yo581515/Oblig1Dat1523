@@ -3,12 +3,14 @@ package com.example.oblig1dat153;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.oblig1dat153.model.Animal;
 import com.example.oblig1dat153.model.AnimalList;
@@ -27,7 +29,6 @@ public class QuizActivity extends AppCompatActivity {
     RadioButton radio_1;
     RadioButton radio_2;
     RadioButton radio_3;
-    Button submit_btn;
     List<Animal> animals = AnimalList.getInstance().getAnimals();
     int currentAnimalIndex = 0;
 
@@ -42,20 +43,20 @@ public class QuizActivity extends AppCompatActivity {
         radio_1 = findViewById(R.id.radio_1);
         radio_2 = findViewById(R.id.radio_2);
         radio_3 = findViewById(R.id.radio_3);
-        submit_btn = findViewById(R.id.submit_btn);
 
         Collections.shuffle(animals);
-        if(animals.size()!=0){
+        if (animals.size() != 0) {
             setUpQuestions(animals.get(currentAnimalIndex));
         }
 
-        submit_btn.setOnClickListener(new View.OnClickListener() {
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
                 Boolean isCorrectName = false;
-                int checked_radio_id = radioGroup.getCheckedRadioButtonId();
-                RadioButton radio_checked = findViewById(checked_radio_id);
-                if (radio_checked != null && radio_checked.isChecked()) {
+                RadioButton radio_checked = findViewById(checkedId);
+
+                if (radio_checked != null) {
                     isCorrectName = animals.get(currentAnimalIndex).isCorrectName(radio_checked.getText().toString());
                     radio_checked.setChecked(false);
                 }
@@ -65,10 +66,18 @@ public class QuizActivity extends AppCompatActivity {
                     mScore++;
                     score.setText("" + mScore);
 
+                    int mTries = Integer.parseInt(tries.getText().toString());
+                    mTries++;
+                    tries.setText("" + mTries);
+                    Toast.makeText(QuizActivity.this, "Correct Answer", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    int mTries = Integer.parseInt(tries.getText().toString());
+                    mTries++;
+                    tries.setText("" + mTries);
+
+                    Toast.makeText(QuizActivity.this, "Wrong Answer", Toast.LENGTH_SHORT).show();
                 }
-                int mTries = Integer.parseInt(tries.getText().toString());
-                mTries++;
-                tries.setText("" + mTries);
 
                 currentAnimalIndex = (currentAnimalIndex + 1) % animals.size();
                 setUpQuestions(animals.get(currentAnimalIndex));
