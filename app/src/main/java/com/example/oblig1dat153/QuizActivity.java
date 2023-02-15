@@ -100,8 +100,7 @@ public class QuizActivity extends AppCompatActivity {
         q_image = findViewById(R.id.q_image);
         QuizUtils.insertToImageView(
                 animal.getImage(),
-                q_image,
-                getApplicationContext()
+                q_image
         );
     }
 

@@ -8,10 +8,10 @@ import com.bumptech.glide.Glide;
 
 public class QuizUtils {
 
-    public static void insertToImageView(Bitmap image, ImageView imageView, Context context) {
+    public static void insertToImageView(Bitmap image, ImageView imageView) {
 
         Glide
-                .with(context)
+                .with(imageView.getContext())
                         .load(image)
                                 .into(imageView);
 //        imageView.setImageBitmap(image);
